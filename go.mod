@@ -7,7 +7,7 @@ require (
 	github.com/NimbleMarkets/ntcharts v0.4.0
 	github.com/adrg/xdg v0.5.3
 	github.com/caarlos0/env/v11 v11.3.1
-	github.com/charmbracelet/huh v0.8.0
+	github.com/charmbracelet/huh/v2 v2.0.3
 	github.com/charmbracelet/lipgloss v1.1.0
 	github.com/fatih/color v1.18.0
 	github.com/fsnotify/fsnotify v1.9.0
