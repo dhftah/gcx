@@ -8,7 +8,7 @@ require (
 	github.com/adrg/xdg v0.5.3
 	github.com/caarlos0/env/v11 v11.3.1
 	github.com/charmbracelet/huh v0.8.0
-	github.com/charmbracelet/lipgloss v1.1.0
+	github.com/charmbracelet/lipgloss/v2 v2.0.2
 	github.com/fatih/color v1.18.0
 	github.com/fsnotify/fsnotify v1.9.0
 	github.com/go-chi/chi/v5 v5.2.5
