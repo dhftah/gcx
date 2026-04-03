@@ -25,6 +25,8 @@ func (c *queryTableCodec) Encode(w io.Writer, data any) error {
 		return prometheus.FormatTable(w, resp)
 	case *loki.QueryResponse:
 		return loki.FormatQueryTable(w, resp)
+	case *loki.MetricQueryResponse:
+		return loki.FormatMetricQueryTable(w, resp)
 	case *pyroscope.QueryResponse:
 		return pyroscope.FormatQueryTable(w, resp)
 	case *tempo.SearchResponse:
@@ -84,6 +86,11 @@ func (c *queryGraphCodec) Encode(w io.Writer, data any) error {
 		if err != nil {
 			return err
 		}
+	case *loki.MetricQueryResponse:
+		chartData, err = graph.FromLokiMetricResponse(resp)
+		if err != nil {
+			return err
+		}
 	case *pyroscope.QueryResponse:
 		chartData, err = graph.FromPyroscopeResponse(resp)
 		if err != nil {
@@ -95,7 +102,7 @@ func (c *queryGraphCodec) Encode(w io.Writer, data any) error {
 			return err
 		}
 	default:
-		return errors.New("invalid data type for graph codec (expected *prometheus.QueryResponse, *loki.QueryResponse, or *pyroscope.QueryResponse)")
+		return errors.New("invalid data type for graph codec")
 	}
 
 	opts := graph.DefaultChartOptions()
