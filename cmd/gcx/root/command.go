@@ -187,5 +187,9 @@ func newCommand(version string, pp []providers.Provider) *cobra.Command {
 	rootCmd.PersistentFlags().CountVarP(&verbosity, "verbose", "v", "Verbose mode. Multiple -v options increase the verbosity (maximum: 3).")
 	rootCmd.PersistentFlags().StringVar(&contextName, "context", "", "Name of the context to use (overrides current-context in config)")
 
+	// Apply centralized agent annotations (token_cost, llm_hint) to the
+	// full command tree. Must run after all commands are registered.
+	agent.ApplyAnnotations(rootCmd)
+
 	return rootCmd
 }
